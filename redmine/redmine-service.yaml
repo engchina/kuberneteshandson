@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f mysql-redmine.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: redmine
+  name: redmine-service
+spec:
+  ports:
+  - name: "10083"
+    port: 10083
+    targetPort: 80
+  selector:
+    io.kompose.service: redmine
+status:
+  loadBalancer: {}
