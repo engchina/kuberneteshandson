@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postgresql
+  name: postgresql-service
+spec:
+  ports:
+  - port: 5432
+  selector:
+    io.kompose.service: postgresql

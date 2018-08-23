@@ -1,0 +1,206 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: gitlab
+  name: gitlab
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: gitlab
+    spec:
+      containers:
+      - env:
+        - name: DB_ADAPTER
+          value: postgresql
+        - name: DB_HOST
+          value: postgresql-service
+        - name: DB_NAME
+          value: gitlabhq_production
+        - name: DB_PASS
+          value: password
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USER
+          value: gitlab
+        - name: DEBUG
+          value: "false"
+        - name: GITLAB_BACKUP_SCHEDULE
+          value: daily
+        - name: GITLAB_BACKUP_TIME
+          value: "01:00"
+        - name: GITLAB_EMAIL
+          value: notifications@example.com
+        - name: GITLAB_EMAIL_REPLY_TO
+          value: noreply@example.com
+        - name: GITLAB_HOST
+          value: localhost
+        - name: GITLAB_HTTPS
+          value: "false"
+        - name: GITLAB_INCOMING_EMAIL_ADDRESS
+          value: reply@example.com
+        - name: GITLAB_NOTIFY_ON_BROKEN_BUILDS
+          value: "true"
+        - name: GITLAB_NOTIFY_PUSHER
+          value: "false"
+        - name: GITLAB_PORT
+          value: "10080"
+        - name: GITLAB_RELATIVE_URL_ROOT
+        - name: GITLAB_ROOT_EMAIL
+        - name: GITLAB_ROOT_PASSWORD
+        - name: GITLAB_SECRETS_DB_KEY_BASE
+          value: long-and-random-alphanumeric-string
+        - name: GITLAB_SECRETS_OTP_KEY_BASE
+          value: long-and-random-alphanumeric-string
+        - name: GITLAB_SECRETS_SECRET_KEY_BASE
+          value: long-and-random-alphanumeric-string
+        - name: GITLAB_SSH_PORT
+          value: "10022"
+        - name: GITLAB_TIMEZONE
+          value: Kolkata
+        - name: IMAP_ENABLED
+          value: "false"
+        - name: IMAP_HOST
+          value: imap.gmail.com
+        - name: IMAP_PASS
+          value: password
+        - name: IMAP_PORT
+          value: "993"
+        - name: IMAP_SSL
+          value: "true"
+        - name: IMAP_STARTTLS
+          value: "false"
+        - name: LDAP_ENABLED
+          value: "true"
+        - name: LDAP_HOST
+          value: ldap-service
+        - name: LDAP_PORT
+          value: "389"
+        - name: LDAP_UID
+          value: "cn"
+        - name: LDAP_METHOD
+          value: "plain"
+        - name: LDAP_BIND_DN
+          value: "cn=admin,dc=example,dc=org"
+        - name: LDAP_PASS
+          value: "admin"
+        - name: LDAP_ACTIVE_DIRECTORY
+          value: "false"
+        - name: LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN
+          value: "true"
+        - name: LDAP_BASE
+          value: "dc=example,dc=org"
+#        - name: LDAP_USER_FILTER
+#          value: "(objectClass=*)"
+        - name: IMAP_USER
+          value: mailer@example.com
+        - name: OAUTH_ALLOW_SSO
+        - name: OAUTH_AUTH0_CLIENT_ID
+        - name: OAUTH_AUTH0_CLIENT_SECRET
+        - name: OAUTH_AUTH0_DOMAIN
+        - name: OAUTH_AUTO_LINK_LDAP_USER
+          value: "true"
+        - name: OAUTH_AUTO_LINK_SAML_USER
+          value: "false"
+        - name: OAUTH_AUTO_SIGN_IN_WITH_PROVIDER
+        - name: OAUTH_AZURE_API_KEY
+        - name: OAUTH_AZURE_API_SECRET
+        - name: OAUTH_AZURE_TENANT_ID
+        - name: OAUTH_BITBUCKET_API_KEY
+        - name: OAUTH_BITBUCKET_APP_SECRET
+        - name: OAUTH_BLOCK_AUTO_CREATED_USERS
+          value: "true"
+        - name: OAUTH_CAS3_DISABLE_SSL_VERIFICATION
+          value: "false"
+        - name: OAUTH_CAS3_LABEL
+          value: cas3
+        - name: OAUTH_CAS3_LOGIN_URL
+          value: /cas/login
+        - name: OAUTH_CAS3_LOGOUT_URL
+          value: /cas/logout
+        - name: OAUTH_CAS3_SERVER
+        - name: OAUTH_CAS3_VALIDATE_URL
+          value: /cas/p3/serviceValidate
+        - name: OAUTH_CROWD_APP_NAME
+        - name: OAUTH_CROWD_APP_PASSWORD
+        - name: OAUTH_CROWD_SERVER_URL
+        - name: OAUTH_ENABLED
+          value: "false"
+        - name: OAUTH_EXTERNAL_PROVIDERS
+        - name: OAUTH_FACEBOOK_API_KEY
+        - name: OAUTH_FACEBOOK_APP_SECRET
+        - name: OAUTH_GITHUB_API_KEY
+        - name: OAUTH_GITHUB_APP_SECRET
+        - name: OAUTH_GITHUB_URL
+        - name: OAUTH_GITHUB_VERIFY_SSL
+        - name: OAUTH_GITLAB_API_KEY
+        - name: OAUTH_GITLAB_APP_SECRET
+        - name: OAUTH_GOOGLE_API_KEY
+        - name: OAUTH_GOOGLE_APP_SECRET
+        - name: OAUTH_GOOGLE_RESTRICT_DOMAIN
+        - name: OAUTH_SAML_ASSERTION_CONSUMER_SERVICE_URL
+        - name: OAUTH_SAML_ATTRIBUTE_STATEMENTS_EMAIL
+        - name: OAUTH_SAML_ATTRIBUTE_STATEMENTS_FIRST_NAME
+        - name: OAUTH_SAML_ATTRIBUTE_STATEMENTS_LAST_NAME
+        - name: OAUTH_SAML_ATTRIBUTE_STATEMENTS_NAME
+        - name: OAUTH_SAML_EXTERNAL_GROUPS
+        - name: OAUTH_SAML_GROUPS_ATTRIBUTE
+        - name: OAUTH_SAML_IDP_CERT_FINGERPRINT
+        - name: OAUTH_SAML_IDP_SSO_TARGET_URL
+        - name: OAUTH_SAML_ISSUER
+        - name: OAUTH_SAML_LABEL
+          value: '"Our SAML Provider"'
+        - name: OAUTH_SAML_NAME_IDENTIFIER_FORMAT
+          value: urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        - name: OAUTH_TWITTER_API_KEY
+        - name: OAUTH_TWITTER_APP_SECRET
+        - name: REDIS_HOST
+          value: redis-service
+        - name: REDIS_PORT
+          value: "6379"
+        - name: SMTP_AUTHENTICATION
+          value: login
+        - name: SMTP_DOMAIN
+          value: www.example.com
+        - name: SMTP_ENABLED
+          value: "false"
+        - name: SMTP_HOST
+          value: smtp.gmail.com
+        - name: SMTP_PASS
+          value: password
+        - name: SMTP_PORT
+          value: "587"
+        - name: SMTP_STARTTLS
+          value: "true"
+        - name: SMTP_USER
+          value: mailer@example.com
+        - name: SSL_SELF_SIGNED
+          value: "false"
+        - name: TZ
+          value: Asia/Shanghai
+        image: sameersbn/gitlab:11.1.4
+        name: gitlab
+        ports:
+        - containerPort: 80
+        - containerPort: 22
+        resources: {}
+        volumeMounts:
+        - mountPath: /home/git/data
+          name: gitlab-claim0
+      restartPolicy: Always
+      volumes:
+      - name: gitlab-claim0
+        hostPath:
+          path: /srv/docker/gitlab/gitlab
+#        persistentVolumeClaim:
+#          claimName: gitlab-claim0
+status: {}
