@@ -81,8 +81,7 @@ spec:
           value: mailer@example.com
         - name: TZ
           value: Asia/Kolkata
-#        image: sameersbn/redmine:3.4.6
-        image: atjapan2015/redmine:3.4.9
+        image: sameersbn/redmine:3.4.6
         name: redmine
         ports:
         - containerPort: 80
