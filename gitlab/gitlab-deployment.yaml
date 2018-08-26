@@ -55,13 +55,19 @@ spec:
         - name: GITLAB_PORT
           value: "10080"
         - name: GITLAB_RELATIVE_URL_ROOT
+#          value: 
         - name: GITLAB_ROOT_EMAIL
+          value: "root@example.org"   
         - name: GITLAB_ROOT_PASSWORD
+          value: "password"
         - name: GITLAB_SECRETS_DB_KEY_BASE
+#          value: "admin"
           value: long-and-random-alphanumeric-string
         - name: GITLAB_SECRETS_OTP_KEY_BASE
+#          value: "admin"
           value: long-and-random-alphanumeric-string
         - name: GITLAB_SECRETS_SECRET_KEY_BASE
+#          value: "admin" 
           value: long-and-random-alphanumeric-string
         - name: GITLAB_SSH_PORT
           value: "10022"
